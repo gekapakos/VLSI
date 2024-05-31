@@ -1,0 +1,19 @@
+****ASKISI1****
+.include ./tscmos025.txt
+.param supply=2.5
+****PMOS****
+
+MPMOS d g s 0 CMOSP w=3u l=2u
+
+vgs g s dc -2v
+vds d s dc 0v
+vs s 0 dc 0v
+
+.dc vds -2.5v -1.45v 0.25v
+
+.control
+	run
+	set color0=white
+	set color1=black
+	plot ((v(d) - v(s))/(-i(vds))) mean(((v(d) - v(s))/(-i(vds))))
+.endc

@@ -1,0 +1,24 @@
+****ASKISI 3****
+.include ./tscmos025.txt
+.param supply3=1.2
+.param ground=0
+
+****B****
+
+****1.2V****
+MN3 8 7 0 0 CMOSN W=3u L=2u
+MP3 8 7 9 9 CMOSP W=3u L=2u
+
+Vdd3 9 0 DC supply3
+Vin3 7 0 DC ground
+
+.dc Vin3 0 1.2 0.01
+
+.control
+	run 
+	set color0=white
+	set color1=black
+	plot V(8) V(7) 1.2v 0v (-1v) deriv(V(8)) 
+	plot mean(-i(vdd3)) (-i(vdd3))
+	plot mean(v(9)*(-i(vdd3))) (v(9)*(-i(vdd3)))
+.endc

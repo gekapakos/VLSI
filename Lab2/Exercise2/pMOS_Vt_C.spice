@@ -1,0 +1,22 @@
+.include ./tscmos025.txt
+
+M1 d g s b CMOSP W=3u L=2u
+M2 d2 g d b CMOSP W=3u L=2u
+
+vs s 0 dc 0v
+vb b 0 dc 0v
+vg g 0 dc 0v
+
+.ic v(d2)=2.5v
+.ic v(d)=2.5v
+
+.tran 10p 2n 
+
+.control
+	run
+	set color0=white
+	set color1=black
+	plot v(d) v(s) v(d2)
+.endc
+
+.end

@@ -1,0 +1,141 @@
+*Pass Transistor Master-Slave FF
+
+.include ./tscmos025.txt
+.option scale=1u
+.global vdd
+
+*Invertor subcircuit
+.subckt inv in out params: wnsize=3 wpsize=9
+MPMOS out in vdd vdd CMOSP w=wpsize l=2
+MNMOS out in 0 0 CMOSN w=wnsize l=2
+.ends
+
+*Pass Gate subcircuit
+.subckt passgate on non in out params: wnsize=3 wpsize=9
+MNMOS out non in 0 CMOSN w=wnsize l=2
+MPMOS in on out vdd CMOSP w=wpsize l=2
+.ends
+
+.ic v(out_T1_T2)=2.5v
+.ic v(out_T3_T4)=2.5v
+.ic v(Qm)=0v
+.ic v(Q)=0v
+
+*g1 1st not gate
+Xinvg1 clk nclk inv params: wnsize=3 wpsize=9
+
+*g1 2nd not gate 
+Xinvg1_2 nclk outg1 inv params: wnsize=3 wpsize=9
+
+*x2 1st gate inverter
+Xinvx2 outg1 outx2 inv params: wnsize=6 wpsize=18
+
+*x2 2nd gate inverter
+Xinvx2_2 outx2 outx2_2 inv params: wnsize=12 wpsize=36
+
+*I1 inverter
+XinvI1 d not_d inv params: wnsize=3 wpsize=9
+
+*Passgate T1
+Xpassgate_T1 outx2 outx2_2 not_d out_T1_T2 passgate params: wnsize=3 wpsize=9
+
+*Passgate T2
+Xpassgate_T2 outx2_2 outx2 out_T1_T2 not_Qm passgate params: wnsize=3 wpsize=9
+
+*I2 inverter
+XinvI2 Qm not_Qm inv params: wnsize=3 wpsize=9
+
+*I3 inverter
+XinvI3 out_T1_T2 Qm inv params: wnsize=3 wpsize=9
+
+*I4 inverter
+XinvI4 Qm not_Qm2 inv params: wnsize=3 wpsize=9
+
+*Passgate T3
+Xpassgate_T3 outx2_2 outx2 not_Qm2 out_T3_T4 passgate params: wnsize=3 wpsize=9
+
+*I5 inverter
+XinvI5 Q not_Q inv params: wnsize=3 wpsize=9
+
+*Passgate T4
+Xpassgate_T4 outx2 outx2_2 out_T3_T4 not_Q passgate params: wnsize=3 wpsize=9
+
+*I6 inverter
+XinvI6 out_T3_T4 Q inv params: wnsize=3 wpsize=9
+
+vvdd vdd 0 2.5v dc
+
+****A****
+
+*Input Signal
+*vd d 0 pulse(2.5 0 0 0 0 100n 300n)
+
+*Clock Signal
+*vclk clk 0 pulse(0 2.5 0 0 0 50n 100n)
+
+****B****
+
+*Input Signal
+*vd d 0 pulse(0 2.5 0 400p 400p 100n 200n)
+**vd d 0 pulse(0 2.5 0 400p 400p 75n 150n)
+vd d 0 pulse(0 2.5 0 400p 400p 45n 90n)
+
+*Clock Signal
+*vclk clk 0 pulse(2.5 0 0  200p 200p 50n 100n)
+**vclk clk 0 pulse(2.5 0 0  200p 200p 25n 50n)
+vclk clk 0 pulse(2.5 0 0  200p 200p 15n 30n)
+
+****tphl****
+.meas tran T_phl
++ trig v(clk) val=1.25v rise=1
++ targ v(Q) val=1.25v fall=1
+
+****tplh****
+.meas tran T_plh
++ trig v(clk) val=1.25v fall=1
++ targ v(Q) val=1.25v rise=1
+
+*Rise and fall time of Qm
+
+.meas tran T_rise_Qm
++ trig v(Qm) val=0.25v rise=1
++ targ v(Qm) val=2.25v rise=1
+
+.meas tran T_fall_Qm
++ trig v(Qm) val=2.25v fall=1
++targ v(Qm) val=0.25v fall=1
+
+*Rise and fall time of Q
+
+.meas tran T_rise_Q
++ trig v(Q) val=0.25v rise=1
++ targ v(Q) val=2.25v rise=1
+
+.meas tran T_fall_Q
++ trig v(Q) val=2.25v fall=1
++targ v(Q) val=0.25v fall=1
+
+*Set up time
+
+.meas tran T_setup
++ trig v(d) val=1.25v rise=1
++ targ v(clk) val=1.25v fall=2
+
+*Hold time
+
+.meas tran T_hold
++ trig v(clk) val=1.25v fall=2
++ targ v(d) val=1.25v fall=1
+
+*.tran 10p 600n
+**.tran 10p 300n
+.tran 10p 180n
+
+.control
+	run
+	set color0=white
+	set color1=black
+	plot clk d q
+.endc
+
+.end

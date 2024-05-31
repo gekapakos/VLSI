@@ -1,0 +1,66 @@
+* SPICE3 file created from fmaj.ext - technology: scmos
+
+.include ./tscmos025.txt
+.param supply=2.5
+.option scale=1u
+
+Vdd Vs Gnd supply
+
+
+****PDN****
+MNA fmaj inA node3 Gnd CMOSN w=8 l=2
++  ad=48 pd=28 as=0 ps=0
+
+MNB node3 inB Gnd Gnd CMOSN w=8 l=2
++  ad=0 pd=0 as=0 ps=0
+
+MNC Gnd inC node3 Gnd CMOSN w=8 l=2
++  ad=88 pd=54 as=88 ps=54
+
+MNB2 node4 inB fmaj Gnd CMOSN w=8 l=2
++  ad=48 pd=28 as=0 ps=0
+
+MNC2 Gnd inC node4 Gnd CMOSN w=8 l=2
++  ad=0 pd=0 as=0 ps=0
+
+****PUN****
+MPB Vs inB node1 Vs CMOSP w=30 l=2
++  ad=170 pd=72 as=180 ps=72
+
+MPC node1 inC node2 Vs CMOSP w=30 l=2
++  ad=0 pd=0 as=0 ps=0
+
+MPA node2 inA Vs Vs CMOSP w=20 l=2
++  ad=470 pd=212 as=0 ps=0
+
+MPB2 fmaj inB node2 Vs CMOSP w=30 l=2
++  ad=180 pd=72 as=0 ps=0
+
+MPC2 node2 inC fmaj Vs CMOSP w=30 l=2
++  ad=0 pd=0 as=0 ps=0
+
+C0 Gnd inB 4.93fF
+C1 Gnd inA 2.46fF
+C2 Vs inA 3.34fF
+C3 Vs node2 5.26fF
+C4 Gnd inC 4.93fF
+C5 node3 0 4.51fF
+C6 fmaj 0 8.11fF
+C7 node2 0 5.64fF
+C8 inA 0 7.46fF
+C9 inB 0 20.18fF
+C10 inC 0 26.19fF
+
+VinA inA 0 PULSE (2.5 0 0 1p 1p 400n 800n)
+VinB inB 0 PULSE (2.5 0 0 1p 1p 200n 400n)
+VinC inC 0 PULSE (2.5 0 0 1p 1p 100n 200n)
+.TRAN 0.001n 800n
+
+.control
+	run 
+	set color0=white
+	set color1=black
+	plot fmaj v(inA) v(inB) v(inC)  
+.endc
+
+.end

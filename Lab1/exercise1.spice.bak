@@ -1,0 +1,50 @@
+****ASKISI 1****
+.include ./tscmos025.txt
+.param supply=2.5
+.option scale=1u
+
+vdd vss gnd supply
+
+MP0 out in vss vss CMOSP w=3 l=2
++ ad=19 pd=18 as=19 ps=18
+MN0 out in gnd gnd CMOSN w=3 l=2
++ ad=19 pd=18 as=19 ps=18
+
+C0 in 0 3.64fF
+
+
+****PWL****
+vin in gnd pwl(0 0 75p 0 325p supply 925p supply 1175p 0)
+.tran 10p 6n
+
+*a)
+****tphl****
+.meas tran T_phl
++ trig v(in) val=0.5*supply rise=1
++ targ v(out) val=0.5*supply fall=1
+
+****tplh****
+.meas tran T_plh
++ trig v(in) val=0.5*supply fall=1
++ targ v(out) val=0.5*supply rise=1
+
+*b)
+****Rise Time****
+.meas tran T_rise
++ trig v(out) val=0.1*supply rise=1
++ targ v(out) val=0.9*supply rise=1
+
+****Fall Time****
+.meas tran T_fall
++ trig v(out) val=0.9*supply fall=1
++ targ v(out) val=0.1*supply fall=1
+
+
+.control
+	run 
+	set color0=white
+	set color1=black
+	plot in out
+.endc
+
+.end

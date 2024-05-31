@@ -1,0 +1,23 @@
+****ASKISI1 b****
+.include ./tscmos025.txt
+.param supply=2.5
+
+vg g 0 dc 2.5v
+vs s 0 dc 0v
+
+MNMOS d g s 0 CMOSN w=3u l=2u
+CL1 d 0 0.1p
+
+.ic v(d) = 2.5v
+.tran 1n 7n
+
+.measure tran tp WHEN v(d)=1.25v cross=1 
+
+.control
+	run
+	set color0=white
+	set color1=black
+	plot v(d) 1.25v
+.endc
+
+.end

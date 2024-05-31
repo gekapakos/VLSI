@@ -1,0 +1,21 @@
+****ASKISI1****
+.include ./tscmos025.txt
+.param supply=2.5
+****PMOS****
+
+MPMOS d g s b CMOSP w=3u l=2u
+
+vgs g s dc -2.5v
+*vds d s dc -2.5v
+vs s 0 dc 2.5v
+vb b 0 dc 2.5v
+
+.tran 1n 100n
+
+.control
+	run
+	set color0=white
+	set color1=black
+	plot v(d)
+.endc
+

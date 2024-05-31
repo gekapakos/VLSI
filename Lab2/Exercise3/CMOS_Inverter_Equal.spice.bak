@@ -1,0 +1,22 @@
+****ASKISI 3****
+.include ./tscmos025.txt
+.param supply=2.5
+.param ground=0
+
+
+****A*****
+MN1 2 1 0 0 CMOSN W=0.518u L=2u
+MP1 2 1 3 3 CMOSP W=3u L=2u
+
+Vdd 3 0 DC supply
+Vin 1 0 DC ground
+
+.dc Vin 0 2.5 0.01
+
+.control
+	run 
+	set color0=white
+	set color1=black
+	plot V(2) V(1) 
+	*2.5v 0v (-1v) deriv(V(2))
+.endc

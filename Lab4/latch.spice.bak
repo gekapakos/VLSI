@@ -1,0 +1,59 @@
+*Pass Transistor Latch
+
+.include ./tscmos025.txt
+.option scale=1u
+.global vdd
+
+*Invertor subcircuit
+.subckt inv in out params: wnsize=3 wpsize=9
+MPMOS out in vdd vdd CMOSP w=wpsize l=2
+MNMOS out in 0 0 CMOSN w=wnsize l=2
+.ends
+
+*Pass Gate subcircuit
+.subckt passgate on non in out params: wnsize=3 wpsize=9
+MNMOS out non in 0 CMOSN w=wnsize l=2
+MPMOS in on out vdd CMOSP w=wpsize l=2
+.ends
+
+*Parallel not gates subcircuit
+.subckt sramcellweakfb in out
+Xinv1 in out inv params: wnsize=10 wpsize=30
+Xinv2 out in inv params: wnsize=3 wpsize=9
+.ends
+
+*reset sram cell
+.ic v(ndpass)=0v
+
+*Invertor for the clock signal
+Xinvclk clk nclk inv params: wnsize=3 wpsize=9
+
+*D input invertor 
+XinvD d nd inv params: wnsize=10 wpsize=30
+
+*Passgate of the circuit
+Xpassgate clk nclk nd ndpass passgate params: wnsize=9 wpsize=9
+
+*Parallel not gates
+Xsramcell ndpass q sramcellweakfb
+
+vvdd vdd 0 2.5v dc
+
+*Input Signal
+vd d 0 pulse(2.5 0 0 0 0 25n 50n)
+
+*Clock Signal
+vclk clk 0 pulse(2.5 0 0 0 0 50n 100n)
+
+.tran 10p 400n
+
+.control
+	run
+	set color0=white
+	set color1=black
+	*plot nd clk ndpass q
+	*plot ndpass clk nd
+	plot d clk q
+.endc
+
+.end

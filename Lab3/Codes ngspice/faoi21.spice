@@ -1,0 +1,51 @@
+* SPICE3 file created from faoi21.ext - technology: scmos
+
+.include ./tscmos025.txt
+.param supply=2.5
+.option scale=1u
+
+Vdd Vs Gnd supply
+
+****PDN****
+MNA faoi21 inA gnd gnd CMOSN w=4 l=2
++  ad=44 pd=28 as=60 ps=44
+
+MNB node2 inB faoi21 gnd CMOSN w=8 l=2
++  ad=0 pd=0 as=0 ps=0
+
+MNC gnd inC node2 gnd CMOSN w=8 l=2
++  ad=0 pd=0 as=48 ps=28
+
+****PUN****
+MPA node1 inA faoi21 Vs CMOSP w=20 l=2
++  ad=220 pd=102 as=100 ps=50
+
+MPB Vs inB node1 Vs CMOSP w=20 l=2
++  ad=120 pd=52 as=0 ps=0
+
+MPC node1 inC Vs Vs CMOSP w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+
+C0 gnd inA 3.42fF
+C1 gnd inB 2.46fF
+C2 gnd inC 2.46fF
+C3 node1 0 4.14fF
+C4 faoi21 0 8.11fF
+C5 inC 0 6.50fF
+C6 inB 0 6.50fF
+C7 inA 0 6.50fF
+
+
+VinA inA 0 PULSE (2.5 0 0 1p 1p 100n 200n)
+VinB inB 0 PULSE (2.5 0 0 1p 1p 50n 100n)
+VinC inC 0 PULSE (2.5 0 0 1p 1p 25n 50n)
+.TRAN 0.001n 200n
+
+.control
+	run 
+	set color0=white
+	set color1=black
+	plot faoi21 v(inA) v(inB) v(inC)  
+.endc
+
+.end

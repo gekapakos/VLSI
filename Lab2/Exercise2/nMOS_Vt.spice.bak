@@ -1,0 +1,25 @@
+****ASKISI2****
+.include ./tscmos025.txt
+
+****NMOS****
+
+MNMOS1 d g s b CMOSN w=3u l=2u
+MNMOS2 d2 g d b CMOSN w=3u l=2u
+
+vs s 0 dc 2.5v
+vb b 0 dc 2.5v
+vg g 0 dc 2.5v
+
+.ic v(d)=0v
+.ic v(d2)=0v
+
+.tran 10p 10n
+
+.control
+	run
+	set color0=white
+	set color1=black
+	plot v(d) v(g) v(d2)
+.endc
+
+.end

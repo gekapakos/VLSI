@@ -1,0 +1,60 @@
+* SPICE3 file created from faoi22.ext - technology: scmos
+
+.include ./tscmos025.txt
+.param supply=2.5
+.option scale=1u
+
+Vdd Vs Gnd supply
+
+****PDN****
+MNA node2 inA faoi22 Gnd CMOSN w=8 l=2
++  ad=0 pd=0 as=80 ps=52
+
+MNB faoi22 inB node3 Gnd CMOSN w=8 l=2
++  ad=0 pd=0 as=0 ps=0
+
+MNC Gnd inC node2 Gnd CMOSN w=8 l=2
++  ad=48 pd=28 as=48 ps=28
+
+MND node3 inD Gnd Gnd CMOSN w=8 l=2
++  ad=48 pd=28 as=0 ps=0
+
+****PUN****
+MPA Vs inA node1 Vs CMOSP w=20 l=2
++  ad=120 pd=52 as=320 ps=152
+
+MPB node1 inB faoi22 Vs CMOSP w=20 l=2
++  ad=0 pd=0 as=120 ps=52
+
+MPC node1 inC Vs Vs CMOSP w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+
+MPD faoi22 inD node1 Vs CMOSP w=20 l=2
++  ad=0 pd=0 as=0 ps=0
+
+C0 Gnd inA 2.46fF
+C1 Gnd inC 2.46fF
+C2 Gnd inD 2.46fF
+C3 Vdd node1 5.26fF
+C4 Gnd inB 2.46fF
+C5 faoi22 0 11.68fF
+C6 node1 0 4.51fF
+C7 inB 0 6.98fF
+C8 inD 0 6.98fF
+C9 inC 0 6.98fF
+C10 inA 0 6.98fF
+
+VinA inA 0 PULSE (2.5 0 0 1p 1p 400n 800n)
+VinB inB 0 PULSE (2.5 0 0 1p 1p 200n 400n)
+VinC inC 0 PULSE (2.5 0 0 1p 1p 100n 200n)
+VinD inD 0 PULSE (2.5 0 0 1p 1p 50n 100n)
+.TRAN 0.005n 800n
+
+.control
+	run 
+	set color0=white
+	set color1=black
+	plot faoi22 v(inA) v(inB) v(inC) v(inD)
+.endc
+
+.end

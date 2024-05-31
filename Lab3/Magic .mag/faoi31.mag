@@ -1,0 +1,105 @@
+magic
+tech scmos
+timestamp 1671003178
+<< pwell >>
+rect -16 -58 20 -42
+<< nwell >>
+rect -16 -24 20 14
+<< polysilicon >>
+rect -11 6 -9 8
+rect -3 6 -1 8
+rect 5 6 7 8
+rect 13 6 15 8
+rect -11 -42 -9 -4
+rect -3 -42 -1 -24
+rect 5 -42 7 -24
+rect 13 -42 15 -24
+rect -11 -61 -9 -50
+rect -3 -61 -1 -50
+rect 5 -61 7 -50
+rect 13 -61 15 -50
+<< ndiffusion >>
+rect -12 -50 -11 -42
+rect -9 -50 -8 -42
+rect -4 -50 -3 -42
+rect -1 -50 0 -42
+rect 4 -50 5 -42
+rect 7 -50 8 -42
+rect 12 -50 13 -42
+rect 15 -50 16 -42
+<< pdiffusion >>
+rect -12 -4 -11 6
+rect -9 -4 -8 6
+rect -4 -24 -3 6
+rect -1 -24 5 6
+rect 7 -24 13 6
+rect 15 -24 16 6
+<< metal1 >>
+rect -12 10 -8 14
+rect -4 10 0 14
+rect 4 10 8 14
+rect 12 10 16 14
+rect -8 6 -4 10
+rect -16 -28 -12 -4
+rect 16 -28 20 -24
+rect -16 -32 18 -28
+rect -16 -42 -12 -32
+rect -8 -39 12 -35
+rect -8 -42 -4 -39
+rect 8 -42 12 -39
+rect 0 -54 4 -50
+rect 16 -54 20 -50
+rect -12 -58 -8 -54
+rect -4 -58 0 -54
+rect 4 -58 8 -54
+rect 12 -58 16 -54
+<< ntransistor >>
+rect -11 -50 -9 -42
+rect -3 -50 -1 -42
+rect 5 -50 7 -42
+rect 13 -50 15 -42
+<< ptransistor >>
+rect -11 -4 -9 6
+rect -3 -24 -1 6
+rect 5 -24 7 6
+rect 13 -24 15 6
+<< polycontact >>
+rect 18 -32 22 -28
+rect -12 -65 -8 -61
+rect -4 -65 0 -61
+rect 4 -65 8 -61
+rect 12 -65 16 -61
+<< ndcontact >>
+rect -16 -50 -12 -42
+rect -8 -50 -4 -42
+rect 0 -50 4 -42
+rect 8 -50 12 -42
+rect 16 -50 20 -42
+<< pdcontact >>
+rect -16 -4 -12 6
+rect -8 -24 -4 6
+rect 16 -24 20 6
+<< psubstratepcontact >>
+rect -16 -58 -12 -54
+rect -8 -58 -4 -54
+rect 0 -58 4 -54
+rect 8 -58 12 -54
+rect 16 -58 20 -54
+<< nsubstratencontact >>
+rect -16 10 -12 14
+rect -8 10 -4 14
+rect 0 10 4 14
+rect 8 10 12 14
+rect 16 10 20 14
+<< labels >>
+rlabel nsubstratencontact 0 10 4 14 0 Vdd
+rlabel pdiffusion 7 -24 13 6 0 node2
+rlabel pdiffusion -1 -24 5 6 0 node1
+rlabel polycontact 18 -32 22 -28 0 faoi31
+rlabel metal1 0 -39 4 -35 0 node3
+rlabel polycontact -12 -65 -8 -61 0 inB
+rlabel polycontact -4 -65 0 -61 0 inA
+rlabel polycontact 4 -65 8 -61 0 inC
+rlabel polycontact 12 -65 16 -61 0 inD
+rlabel psubstratepcontact 0 -58 4 -54 0 Gnd
+<< end >>

@@ -1,0 +1,109 @@
+magic
+tech scmos
+timestamp 1671006586
+<< pwell >>
+rect -12 -43 24 -27
+<< nwell >>
+rect -12 -8 24 28
+<< polysilicon >>
+rect -7 12 -5 14
+rect 1 12 3 14
+rect 9 12 11 14
+rect 17 12 19 14
+rect -7 -27 -5 -8
+rect 1 -27 3 -8
+rect 9 -27 11 -8
+rect 17 -27 19 -8
+rect -7 -46 -5 -35
+rect 1 -46 3 -35
+rect 9 -46 11 -35
+rect 17 -46 19 -35
+<< ndiffusion >>
+rect -8 -35 -7 -27
+rect -5 -35 1 -27
+rect 3 -35 4 -27
+rect 8 -35 9 -27
+rect 11 -35 17 -27
+rect 19 -35 20 -27
+<< pdiffusion >>
+rect -8 -8 -7 12
+rect -5 -8 -4 12
+rect 0 -8 1 12
+rect 3 -8 4 12
+rect 8 -8 9 12
+rect 11 -8 12 12
+rect 16 -8 17 12
+rect 19 -8 20 12
+<< metal1 >>
+rect -8 24 -4 28
+rect 0 24 4 28
+rect 8 24 12 28
+rect 16 24 20 28
+rect -4 12 0 24
+rect 4 16 24 20
+rect 4 12 8 16
+rect 20 12 24 16
+rect -12 -12 -8 -8
+rect 4 -12 8 -8
+rect -12 -16 8 -12
+rect 12 -12 16 -8
+rect 12 -16 22 -12
+rect 12 -19 16 -16
+rect -12 -23 16 -19
+rect -12 -27 -8 -23
+rect 20 -27 24 -16
+rect 4 -39 8 -35
+rect -8 -43 -4 -39
+rect 0 -43 4 -39
+rect 8 -43 12 -39
+rect 16 -43 20 -39
+<< ntransistor >>
+rect -7 -35 -5 -27
+rect 1 -35 3 -27
+rect 9 -35 11 -27
+rect 17 -35 19 -27
+<< ptransistor >>
+rect -7 -8 -5 12
+rect 1 -8 3 12
+rect 9 -8 11 12
+rect 17 -8 19 12
+<< polycontact >>
+rect 22 -16 26 -12
+rect -8 -50 -4 -46
+rect 0 -50 4 -46
+rect 8 -50 12 -46
+rect 16 -50 20 -46
+<< ndcontact >>
+rect -12 -35 -8 -27
+rect 4 -35 8 -27
+rect 20 -35 24 -27
+<< pdcontact >>
+rect -12 -8 -8 12
+rect -4 -8 0 12
+rect 4 -8 8 12
+rect 12 -8 16 12
+rect 20 -8 24 12
+<< psubstratepcontact >>
+rect -12 -43 -8 -39
+rect -4 -43 0 -39
+rect 4 -43 8 -39
+rect 12 -43 16 -39
+rect 20 -43 24 -39
+<< nsubstratencontact >>
+rect -12 24 -8 28
+rect -4 24 0 28
+rect 4 24 8 28
+rect 12 24 16 28
+rect 20 24 24 28
+<< labels >>
+rlabel metal1 4 16 24 20 0 node1
+rlabel nwell -12 24 24 28 0 Vdd
+rlabel polycontact 22 -16 26 -12 0 faoi22
+rlabel metal1 -12 -43 24 -39 0 Gnd
+rlabel polycontact -8 -50 -4 -46 0 inA
+rlabel polycontact 0 -50 4 -46 0 inC
+rlabel polycontact 8 -50 12 -46 0 inD
+rlabel polycontact 16 -50 20 -46 0 inB
+rlabel ndiffusion -5 -35 1 -27 0 node2
+rlabel ndiffusion 11 -35 17 -27 0 node3
+<< end >>
